@@ -2,6 +2,8 @@
 
 \usepackage{layout}
 
+\newcommand{\uuline}[1]{{\underline{\underline{#1}}}}
+
 \title{AES - Übung 3}
 \date{10. März 2016}
 \author{Markus Birrer \\
@@ -23,7 +25,7 @@
     \[ P' = \frac{U_{SCAP_{max}} \cdot I}{m} 
     = \frac{U_{SCAP{_{max}}}}{\left(R_{S} + R_{L}\right) \cdot m} 
     \cdot \frac{U_{SCAP_{max}}}{2} 
-    = \frac{{U_{SCAP_{max}}}^{2}}{4 \cdot R_{S} \cdot m} \]
+    = \uuline{\frac{{U_{SCAP_{max}}}^{2}}{4 \cdot R_{S} \cdot m}} \]
 \item Wie gross ist eine SCAP-Zeitkonstante typisch? Was last sich davon 
 ableiten? \\
     Im Bereich von $1\si{\second}$ ($\tau = R_{i} \cdot C$)
@@ -51,8 +53,8 @@ Batterien? \\
 \section{Berechnung LiIonen Batterien als Vergleich}
 \begin{itemize}
 \item Berechnen Sie die Energiedichte. \\
-    $80\si{\watt\hour/per/killogram}$ \\
-    pro Zelle zu 365\si{\gram} = 29.2\si{\watt\hour\per Zelle}
+    $80\si{\watt\hour\per\kilogram}$ \\
+    pro Zelle zu 365\si{\gram} $\Rightarrow$ 29.2\si{\watt\hour\per Zelle}
 \item Berechnen Sie die Leistungsdichte der Ladung und der Entladung. 
 Kommentare? \\
     \[ P = \frac{U \cdot I}{m} \]
@@ -85,5 +87,76 @@ den ganzen Energieinhalt. \\
 \subsection{Schlussdiskussion}
 
 \section{Bewertungsbeispiel Akkubohrer}
+In dieser Aufgabe soll gezeigt werden, ob ein SCAP-Speicher für eine 
+elektrische Akkubohrmaschine eine mögliche Alternative ist. Die Vorteile wären 
+klar die schnellere Aufladung des Speichers, sowie der geringere Verschleiss, 
+bzw. die längere Lebensdauer des Speichers. Es soll ein handelsüblicher 
+Akkubohr-Akku mit 16 \si{\watt\hour} durch einen SCAP-Speicher ersetzt werden.
+
+\subsection{Bestimmung des Speichers}
+Als erstes kann die benötigte Kapazität mit der Formel 
+\[ E=\frac{1}{2} \cdot C \cdot \left({U_{max}}^2-{U_{min}}^2\right) \]
+berechnet werden. Dies ergibt bei einer Maximalspannung von 13\si{\volt} und 
+einer Minimalspannung von 5.5\si{\volt} eine Kapazität von 830\si{\farad}. Nun 
+kann die Anzahl benötigter SCAPs bestimmt werden. Die Maximalspannung ist mit 
+13\si{\volt} vorgegeben, bei einer maximalen Zellspannung von 2.7\si{\volt} 
+müssen 5 SCAPs in Serie geschaltet werden um die Maximalspannung zu erreichen. 
+Die Kapazität eines Seriestranges kann mit obiger Formel berechnet werden und 
+beträgt 400\si{\farad}. Um die erforderliche Kapazität zu erreichen wird ein 
+zweiter Seriestrang parallel zum ersten geschaltet. Somit wird eine Kapazität 
+von 800\si{\farad} erreicht, die annähernd der berechneten 830\si{\farad} 
+entsprechen.
+Der so bestimmte SCAP-Speicher sieht wie folgt aus:
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{fig/schema.png}
+    \caption{Schema des SCAP Speichers}
+    \label{fig:schematic}
+\end{figure}
+
+\noindent
+\begin{zebratabular}{@{}lll}
+\rowcolor{gray} \multicolumn{3}{@{}l}{Die gesuchten Daten} \\
+    Gewicht:            
+        & $10 \cdot 3.6\si{\kilogram}$              
+        & = 3.6\si{\kilogram} \\
+    Preis:              
+        & $10 \cdot 50\text{Fr}$                    
+        & = 500\text{Fr} \\
+    DC-Innenwiderstand: 
+        & $\frac{5 \cdot 0.35\si{\milli\ohm}}{2}$  
+        & = 0.875\si{\milli\ohm} \\
+    Volumen:            
+        & $10 \cdot 1\si{\deci\metre} \cdot {(0.6\si{\deci\metre})}^2$          
+        & = 3.6\si{\litre} \\
+\end{zebratabular}
+
+\subsection{Diskussion}
+Der bestimmte SCAP-Speicher erreicht mit 15.41\si{\watt\hour} annähernd die 
+gewünschte Grösse von 16\si{\watt\hour}. Bedenkt man jedoch, dass die 
+Maximalspannung bei fünf in Serie geschalteten SCAPs bei 13.5\si{\volt} liegt, 
+wird ein Wert von 16.88\si{\watt\hour} erreicht. Der Speicher ist so in der 
+Lage die erforderliche Energie zur Verfügung zu stellen. Der Speicher kann so 
+wesentlich schneller geladen werden, als ein üblicher Akku. Auch der sehr 
+niedrige Innenwiderstand von rund 0.9\si{\milli\ohm} ermöglicht ein 
+verlustarmes Laden des Speichers.
+
+\noindent
+Das Gewicht des Speichers von 3.6\si{\kilogram} ist jedoch sehr hoch, und in 
+der Praxis wohl nicht anwendbar. Auch wenn man den Speicher halbiert und nur 
+ein Seriestrang verwendet, auch so kann das in der Aufgabe beschriebene 
+Lastprofil noch bewältigt werden, wäre das Gewicht von 1.5\si{\kilogram} noch 
+zu hoch. Ausserdem ist der Preis mit 500.- Fr. für einen SCAP-Speicher im 
+Vergleich zu einem Handelsüblichen Akku viel zu hoch. Nicht zuletzt ist auch 
+das benötigte Volumen von 3.6 Litern viel grösser als das eines Akkus. Bedenkt 
+man ausserdem die Position des Speichers bei einem Akkubohrer wird klar, dass 
+das Werkzeug nicht mehr mit nur einer Hand gehalten werden kann, da der 
+Speicher sowohl volumenmässig als auch der aus dem Gewicht resultierenden 
+Hebel zu gross würde.
+
+\noindent
+Abschliessend kann gesagt werden, dass ein SCAP-Speicher für einen Akkubohrer 
+elektrotechnisch möglich wäre. Aus praktischer und finanzieller Sicht ist er 
+jedoch nicht sinnvoll.
 
 \end{document}
