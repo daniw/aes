@@ -82,6 +82,51 @@ den ganzen Energieinhalt. \\
 \end{itemize}
 
 \section{Messung Supercaps}
+\subsection{Bestimmung Innenwiderstand}
+Zunächst wird der SCAP auf eine Spannung von 2.7\si{\volt} aufgeladen. Dazu 
+wird beim ein maximaler Strom von 30\si{\ampere} eingestellt. Die Ladung 
+erfolgt zunächst als Konstantstromladung (CC). Nach dem Erreichen der 
+Ladeschlussspannung wird der Ladevorgang als Konstantspannungsladung (CV) 
+fortgesetzt. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.0\textwidth, trim=0 20 0 45, clip=true]{fig/charge.png}
+    \caption{Ladevorgang $\to$ 30\si{\ampere}}
+    \label{fig:charge}
+\end{figure}
+
+\noindent
+Anschliessend wird der SCAP zur Bestimmung des Innenwiderstandes mit einem 
+Strom vom 100\si{\ampere} entladen. Dabei wird die Spannung des SCAP gemessen. 
+Aus dem Spannungsabfall nach dem Einschalten der Last kann der Innenwiderstand 
+berechnet werden. 
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.0\textwidth, trim=0 20 0 45, clip=true]{fig/discharge2.png}
+    \caption{Endladevorgang $\to$ 100 \si{\ampere}}
+    \label{fig:discharge_i}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.0\textwidth, trim=0 20 0 45, clip=true]{fig/discharge1.png}
+    \caption{Spannungsverlauf zu Begin des Endladevorgangs}
+    \label{fig:discharge_u}
+\end{figure}
+
+\noindent
+Mit einem Kurzschlussversuch \ldots
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=1.0\textwidth, trim=0 20 0 45, clip=true]{fig/short.png}
+    \caption{Kurzschlussversuch}
+    \label{fig:short}
+\end{figure}
+
+\subsection{Messung Kurzschluss}
 \subsection{Schlussdiskussion}
 
 \section{Bewertungsbeispiel Akkubohrer}
