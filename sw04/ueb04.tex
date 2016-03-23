@@ -67,10 +67,53 @@
 \subsection{Berechnungen}
 Polpaarzahl
 \[ n = \frac{f_{el}}{f_{mech}} = \frac{55.25}{420 \cdot \frac{1}{60}} = 7.89 \to \uuline{8} \]
-Phasenverschiebung zu Hallsensor zu Nulldurchgang
+Phasenverschiebung Hallsensor zu Nulldurchgang
 \[ \phi_{offset} = \frac{T_{offset}}{T} = \frac{1.66 ms}{18.0995 ms} = 33^\circ \]
 
-\section{Messfahrt}
+\section{Gesamtantriebssyteme und Simulationen: Messung an einem Ebike Antrieb}
+
+\subsection{Energiemessfahrt mit dem Stromer-Ebike}
+Die Strecke rund um das Areal der T\&A wurde mit dem E-Bike abgefahren. Dabei 
+wurde kontinuierlich die Spannung und den Strom zwischen dem Akku und dem 
+Kontroller gemessen und geloggt. Aus diesen Datenkann in etwa berechnen 
+werden, wie viel Energie für die Probefahrt vom Fahrer aufgewendet wurde und 
+wie viel vom Motor geleistet wurde.
+
+\noindent
+Um den Strom zu messen, wurde eine Stromzange in die Leitung zwischen Akku und 
+Kontroller gehängt. Ebenfalls wird bei den Eingangsbuchsen des Akkus an der 
+Box die Spannung abgegriffen. Die Messleitungen führen zu je einem 
+MetraHit-Loggerät, welche wiederum auf je ein MetraHit-Multimeter aufgesteckt 
+sind. Die beiden Loggeräte werden zusammengesteckt und über einen USB-RS232 
+Wandler mit einem Laptop verbunden. Auf dem Laptop ist das Tool MetraWin 10 
+installiert, über welches das Datenlogging läuft. Der Laptop wurde zusammen 
+mit den Messgeräten in einen Rucksack gepackt, welcher während der Fahrt vom 
+Fahrer mitgeführt wurde.
+
+\subsection{Berechnung der Energie aus Antrieb}
+Aus den geloggten Daten (siehe Anhang) kann die benötigte Energie des Motors 
+während der Testfahrt wie folgt berechnet werden:
+\[ E_{tot_{Motor}} = \sum\limits_{t_{start}}^{t_{end}} P dt 
+= \sum\limits_{t_{start}}^{t_{end}}  U \cdot I \cdot dt \]
+Das Ergebnis lautet: 
+\[ E_{tot_{Motor}} = 76'687 Ws = 21.3 Wh \]
+
+\subsection{Berechnung der Energie aus GPS-Daten}
+\[ E_{tot_{GPS}} = \sum\limits_{t_{start}}^{t_{end}} P dt 
+= \sum\limits_{t_{start}}^{t_{end}} \frac{1}{2} \cdot m \cdot v^2 dt
+= \sum\limits_{t_{start}}^{t_{end}} \frac{1}{2} \cdot m \cdot \frac{s^2}{dt} \]
+Das Ergebnis lautet:
+\[ E_{tot_{GPS}} = 80'266Ws = 22.3Wh \]
+
+\subsection{Diskussion}
+Vergleicht man die beiden Ergebnisse, fällt auf das sie sehr nahe beieinander 
+liegen. Die Differenz zwischen der benötigten Energie des Motors und der der 
+berechneten Energie aus den GPS Daten beträgt genau eine Wattstunde. Dies ist 
+die Energie, die der Fahrer selbst aufgewendet hat, um das Ebike zu 
+beschleunigen. Der Fahrer hat nach eigenen Angaben nur sehr selten in die 
+Pedalen getreten, da das Ebike über einen Handgasgriff verfügte. Das Treten in 
+die Pedale war also nicht unbedingt nötig. Berücksichtigt man diese Angaben 
+ist das Ergebnis der Testfahrt plausibel.
 
 \section{Simulation}
 
