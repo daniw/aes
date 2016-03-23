@@ -23,6 +23,10 @@
 
 \section{Prüfstandmessungen Motor}
 
+\subsection{Polpaarzahl aus FEMAG Grafik}
+Das FEMAG-Bild zeigt einen Viertel des Motors. Darauf sind vier Polpaare 
+ersichtlich. Folglich besitzt der Motor insgesamt 16 Polpaare. 
+\[ f_{el} = f_{mech} \cdot n  = \frac{420 ~ 1/min}{60} \cdot 16 = 112 Hz \]
 \subsection{Messergebnisse}
 \begin{zebratabular}{p{0.5\textwidth}lll}
     \rowcolor{gray}
@@ -67,8 +71,23 @@
 \subsection{Berechnungen}
 Polpaarzahl
 \[ n = \frac{f_{el}}{f_{mech}} = \frac{55.25}{420 \cdot \frac{1}{60}} = 7.89 \to \uuline{8} \]
-Phasenverschiebung Hallsensor zu Nulldurchgang
+Phasenverschiebung Phasenspannungsnulldurchgang zu Hallsensor im Leerlauf: 
 \[ \varphi_{offset} = \frac{T_{offset}}{T} = \frac{1.66 ms}{18.0995 ms} = 33^\circ \]
+Phasenverschiebung Phasenspannungsnulldurchgang zu Hallsensor mit Last: 
+\[ \varphi_{offset} = \frac{T_{offset}}{T} = \frac{1.38 ms}{18.215 ms} = 27.27^\circ \]
+Phasenverschiebung Spannung zu Strom mit Last: 
+\[ \varphi = \frac{T_{offset}}{T} = \frac{1.88 ms}{18.215 ms} = 37.16^\circ \]
+Gegebene Grössen: 
+\[ R = 0.108 \Omega \]
+\[ R_L = 11.468 \Omega \]
+Berechnete Grössen: 
+\[ U_R = I \cdot R = 0.138 V \]
+\[ U_{R_L} = I \cdot R_L = 14.637 V \]
+\[ U_{L} = I \cdot j \cdot \omega \cdot L \]
+\[ U_{L_L} = I \cdot j \cdot \omega \cdot L_L \]
+\[ U_K = U_{L_L} + U_{R_L}  = I \cdot (R_L + j \cdot \omega \cdot L_L)\]
+\[ U_P = U_R + U_L + U_K = I \cdot (R + R_L + j \cdot \omega \cdot (L + L_L)) \]
+\[ R + R_L = 11.576 \Omega \]
 
 \section{Gesamtantriebssyteme und Simulationen: Messung an einem Ebike Antrieb}
 
