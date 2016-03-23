@@ -23,6 +23,53 @@
 
 \section{Prüfstandmessungen Motor}
 
+\subsection{Messergebnisse}
+\begin{zebratabular}{p{0.5\textwidth}lll}
+    \rowcolor{gray}
+    Messung 
+        & Leerlauf 
+        & Unter Last 
+        & Einheit \\
+    Geschwindigkeit 
+        & 420 
+        & 420 
+        & RPM \\
+    Drehmoment 
+        & 0.98 
+        & 2.38 
+        & Nm \\
+    Phasenspannung L1 (peak-peak) 
+        & 56.7 
+        & 56.8 
+        & V \\
+    Phasenstrom L1 (peak-peak) 
+        & 
+        & 3.61 
+        & A \\
+    Versatz von Phasenspannungsnulldurchgang zu positiver Hallsensorflanke 
+        & 1.66 
+        & 1.38 
+        & ms \\
+    Spannung über der externen Spule 
+        & 
+        & 39.6 
+        & V \\
+    Frequenz der Spannung 
+        & 55.25 
+        & 54.9 
+        & Hz \\
+    Versatz von Phasenspannungsnulldurchgang zu Phasenstromnulldurchgang (Spannung voreilend) 
+        & 
+        & 1.88 
+        & ms \\
+\end{zebratabular}
+
+\subsection{Berechnungen}
+Polpaarzahl
+\[ n = \frac{f_{el}}{f_{mech}} = \frac{55.25}{420 \cdot \frac{1}{60}} = 7.89 \to \uuline{8} \]
+Phasenverschiebung zu Hallsensor zu Nulldurchgang
+\[ \phi_{offset} = \frac{T_{offset}}{T} = \frac{1.66 ms}{18.0995 ms} = 33^\circ \]
+
 \section{Messfahrt}
 
 \section{Simulation}
