@@ -74,6 +74,60 @@ Phasenverschiebung zu Hallsensor zu Nulldurchgang
 
 \section{Simulation}
 
+\begin{zebratabular}{p{0.5\textwidth}l}
+\rowcolor{gray}
+Konstanten: &\\
+Wirkungsgrad Leistungselektronik: & 0.85 \\
+Wirkungsgrad Antriebsmotor: & 0.987 \\
+Rollwiderstand ur: & 0.004 \\
+Erdanziehungskraft g: & 9.81[m/s^2] \\
+
+Luftwiderstand cw: & 0.6 \\
+wirkende Körperfläche: & 0.55 [m^2] \\
+Luftdichte: & 1.202 [kg/m^3] \\
+
+Gewicht m: & 100 [kg] \\
+Strecke s: & 1480[m] \\
+
+
+Durchschnittsgeschwindigkeit (anhand GPS-Daten): & 9.06 [m/s] \\
+
+\end{zebratabular}
+
+\subsection{F_Luftwiderstand} \\
+F_Luftwiderstand = 0.5*Luftdichte*Luftwiderstand cw*Stirnfläche*Fahrgeschwindigkeit^2 \\
+= 16.28 [N] \\
+\\
+\subsection{Rollwiderstand} \\
+F_Rollwiderstand = ur * m * g \\
+= 3.92 [N]\\
+
+\subsection{Reibung total}\\
+F_Reibungtotal = F_Luftwiderstand + F_Rollwiderstand\\
+= 20.20 [N]\\
+
+\subsection{Reibungsenergie}\\
+Reibungsenergie = F_Reibungtotal * Strecke\\
+= 29901 [Ws]\\
+
+\subsection{Potentielle Energie ohne Rekuperation}\\
+Anstieg 1 & 9.3 & [m]\\
+Anstieg 2 & 4.3 & [m]\\
+Höhendifferenztotal & 13.6 & [m]\\
+E_pot = m*a*dh\\
+= 13342 [Ws]\\
+
+\subsection{Energie total}\\
+E_tot = Reibungsenergie + E_pot\\
+= 43243 [Ws]\\
+
+\subsection{benötigte Energie aufgrnd der Wirkungsgrade}\\
+E_needed = E_tot/(Wirkungsgrad Leistungselektronik*Wirkungsgrad Antriebsmotor)\\
+= 51544 [Ws]
+
+
+
+
 \section{Schlussdiskussion}
 
 \end{document}
