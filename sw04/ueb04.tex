@@ -20,8 +20,11 @@
 \clearpage
 
 \section{Abstract}
+In dieser Übung bestand die Gelegenheit einen hocheffizienten Permanentmagnet-Synchronmotor auf einem genauen, ausgeklügelten Motorprüfstand auszumessen. Desweiteren konnte die Leistungsfähigkeit des oben genannten Motor mittels eines präparierten E-Bikes ausprobiert werden. Bei der Testfahrt wurden Daten wie Spannung, Strom und GPS-Daten (Strecke, Weg) aufgezeichnet. Auch wurde eine einfache Simulation der E-Bike-Fahrt durchgeführt. In einem zweiten Schritt wurden die Messwerte von der realen Teststrecke und der Simulation miteinander verglichen. Die Ergebnisse liegen in der Toleranz, bzw. etwaige Abweichungen können erklärt werden.
 
+\clearpage
 \section{Prüfstandmessungen Motor}
+Erstellt durch Ervin Mazlagi\'c und Daniel Winz
 \begin{figure}[h!]
     \centering
     \begin{circuitikz}
@@ -35,12 +38,15 @@
             to[short] (0,0);
         \draw[-latex] (5.3,4) -- node[right] {$U_K$} (5.3,0);
     \end{circuitikz}
+    \caption{Ersatzschaltbild Synchronmaschine mit Last}
+    \label{fig:schematic}
 \end{figure}
 
 \subsection{Polpaarzahl aus FEMAG Grafik}
 Das FEMAG-Bild zeigt einen Viertel des Motors. Darauf sind vier Polpaare 
 ersichtlich. Folglich besitzt der Motor insgesamt 16 Polpaare. 
-\[ f_{el} = f_{mech} \cdot n  = \frac{420 ~ 1/min}{60} \cdot 16 = 112 Hz \]
+\[ f_{el} = f_{mech} \cdot n  = \frac{420 ~ min^{-1}}{60} \cdot 16 = 112 Hz \]
+
 \subsection{Messergebnisse}
 \begin{zebratabular}{p{0.5\textwidth}lll}
     \rowcolor{gray}
@@ -114,7 +120,9 @@ Berechnete Grössen:
 - 3.61A \cdot 2 \cdot \pi \cdot 54.9Hz \cdot 25.20 mH}
 {3.61A \cdot 2 \cdot \pi \cdot 54.9Hz} = \uuline{5.574 mH} \]
 
+\clearpage
 \section{Gesamtantriebssyteme und Simulationen: Messung an einem Ebike Antrieb}
+Erstellt durch Yannick Inderbitzin
 
 \subsection{Energiemessfahrt mit dem Stromer-Ebike}
 Die Strecke rund um das Areal der T\&A wurde mit dem E-Bike abgefahren. Dabei 
@@ -159,8 +167,11 @@ Pedalen getreten, da das Ebike über einen Handgasgriff verfügte. Das Treten in
 die Pedale war also nicht unbedingt nötig. Berücksichtigt man diese Angaben 
 ist das Ergebnis der Testfahrt plausibel.
 
+\clearpage
 \section{Simulation}
+Erstellt durch Stefan Brücker und Markus Birrer
 
+\noindent
 \begin{zebratabular}{p{0.5\textwidth}l}
 \rowcolor{gray}
 Konstanten: &\\
@@ -202,7 +213,11 @@ Höhendifferenztotal & 13.6 [m]\\
 \subsection{Benötigte Energie aufgrund der Wirkungsgrade}
 \[ E_{needed} = \frac{E_{tot}}{(Wirkungsgrad Leistungselektronik \cdot Wirkungsgrad Antriebsmotor)} = 51544 [Ws] \]
 
+\clearpage
 \section{Schlussdiskussion}
+Für den Vergleich der Messfahrt wurden die Messwerte von Spannung und Strom verwendet. Die benötigte Energie konnte damit auf 76687 Ws berechnet werden. Die einfache Simulation ergab einen berechneten Energiebedarf von 51544 Ws. Die Differenz lässt sich durch die vereinfachte Simulation erklären. Der Wirkungsgrad der Leistungselektronik konnte nicht bestimmt werden und wurde auf 0.85 geschätzt.
+
+Die Leistung des E-Bikes ist beeindruckend. Auch der Motorenprüfstand ist faszinierend, wie mittels einfacher Technik ein überaus genaues Messergebnis bestimmt werden kann.
 
 \clearpage
 \begin{appendix}
