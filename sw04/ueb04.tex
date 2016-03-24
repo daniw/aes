@@ -22,6 +22,20 @@
 \section{Abstract}
 
 \section{Prüfstandmessungen Motor}
+\begin{figure}[h!]
+    \centering
+    \begin{circuitikz}
+        \draw
+            (0,0) 
+            to[V^<=$U_P$] (0,4)
+            to[R=$R$, v_>=$U_R$] (2,4)
+            to[L=$L$, v_>=$U_L$] (4,4)
+            to[L=$X_{L_L}$, v_>=$U_{L_L}$] (4,2)
+            to[R=$R_L$, v_>=$U_{R_L}$] (4,0)
+            to[short] (0,0);
+        \draw[-latex] (5.3,4) -- node[right] {$U_K$} (5.3,0);
+    \end{circuitikz}
+\end{figure}
 
 \subsection{Polpaarzahl aus FEMAG Grafik}
 Das FEMAG-Bild zeigt einen Viertel des Motors. Darauf sind vier Polpaare 
@@ -85,16 +99,27 @@ Berechnete Grössen:
 \[ U_{R_L} = I \cdot R_L = 14.637 V \]
 \[ U_{L} = I \cdot j \cdot \omega \cdot L \]
 \[ U_{L_L} = I \cdot j \cdot \omega \cdot L_L \]
+\[ \varphi = \arctan\left(\frac{\omega \cdot L}{R}\right) \]
+\[ L_L = \frac{R \cdot \tan(\varphi)}{\omega} 
+= \frac{11.468 \Omega \cdot \tan(37.16^\circ)}{2 \cdot \pi \cdot 54.9 Hz} 
+= \uuline{25.20 mH} \]
 \[ U_K = U_{L_L} + U_{R_L}  = I \cdot (R_L + j \cdot \omega \cdot L_L)\]
 \[ U_P = U_R + U_L + U_K = I \cdot (R + R_L + j \cdot \omega \cdot (L + L_L)) \]
-\[ R + R_L = 11.576 \Omega \]
+\[ U_L = \sqrt{{U_P}^2 - (I \cdot (R + R_L))^2} - U_{L_L} 
+= \sqrt{{U_P}^2 - (I \cdot (R + R_L))^2} - I \cdot \omega \cdot L_L \]
+\[ L = \frac{U_L}{I \cdot \omega} 
+= \frac{\sqrt{{U_P}^2 - (I \cdot (R + R_L))^2} - I \cdot \omega \cdot L_L}
+{I \cdot \omega} \]
+\[ = \frac{\sqrt{{56.7V}^2 - (3.61A \cdot (0.108 \Omega + 11.468 \Omega))^2} 
+- 3.61A \cdot 2 \cdot \pi \cdot 54.9Hz \cdot 25.20 mH}
+{3.61A \cdot 2 \cdot \pi \cdot 54.9Hz} = \uuline{5.574 mH} \]
 
 \section{Gesamtantriebssyteme und Simulationen: Messung an einem Ebike Antrieb}
 
 \subsection{Energiemessfahrt mit dem Stromer-Ebike}
 Die Strecke rund um das Areal der T\&A wurde mit dem E-Bike abgefahren. Dabei 
 wurde kontinuierlich die Spannung und den Strom zwischen dem Akku und dem 
-Kontroller gemessen und geloggt. Aus diesen Daten kann in etwa berechnen 
+Kontroller gemessen und geloggt. Aus diesen Daten kann in etwa berechnet 
 werden, wie viel Energie für die Probefahrt vom Fahrer aufgewendet wurde und 
 wie viel vom Motor geleistet wurde.
 
