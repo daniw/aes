@@ -17,6 +17,7 @@
 # *.pdf
 sw03/ueb03.pdf
 sw04/ueb04.pdf
+sw06/ueb06.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
