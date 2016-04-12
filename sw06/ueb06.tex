@@ -22,18 +22,42 @@ sowohl der Energieertrag als auch die Kosten berücksichtigt werden.
 
 \begin{figure}[h!]
     \centering
-    \begin{tikzpicture}[scale=2]
-        \draw[] (-1.15,-2.2) rectangle (1.15,2.2);
-        \draw[fill=green] (-1.05,-2.1) rectangle (1.05,2.1);
-        \draw (0,2.5) -- (0,-2.7);
-        \draw[-latex] (0,0) -- (280:2.7) node[right] {Süd};
-        \draw[latex-] (0,-2.5) node[left] {$\gamma = 10^\circ$} 
-            arc [start angle=270, end angle=280, radius=2.5];
-        \node[green!40!black] at (0.5,0) {42m $\times$ 21m};
+    \begin{tikzpicture}[scale=0.2]
+        \draw[] (-11.5,-22.0) rectangle (11.5,22.0);
+        \draw[fill=green] (-10.5,-21.0) rectangle (10.5,21.0);
+        \draw (0,2.5) -- (0,-27.0);
+        \draw[-latex] (0,0) -- (280:27.0) node[right] {Süd};
+        \draw[latex-] (0,-25.0) node[left] {$\gamma = 10^\circ$} 
+            arc [start angle=270, end angle=280, radius=25.0];
+        \node[green!40!black] at (5.0,0) {42m $\times$ 21m};
     \end{tikzpicture}
     \label{fig:roof}
     \caption{Geometrie und Ausrichtung des Flachdachs}
 \end{figure}
+
+\clearpage
+
+\section{Layout}
+Eine Drehung der Module nach Süden lohnt sich aufgrund des kleinen Winkels von 
+$10^\circ$ nicht. 
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[scale=0.2]
+        \draw[] (-11.5,-22.0) rectangle (11.5,22.0);
+        \draw[fill=red!30] (-10.5,-21.0) rectangle (10.5,21.0);
+        \foreach \i in {-21,-17,...,21} {
+            \draw[fill=green!40] (-9.2,\i) rectangle (10.5,\i+2);
+        }
+    \end{tikzpicture}
+    \label{fig:layout_sketch}
+    \caption{Layoutskizze}
+\end{figure}
+
+\section{Modulwahl}
+
+\section{Aufständerung}
+
+
 
 \clearpage
 \begin{appendix}
