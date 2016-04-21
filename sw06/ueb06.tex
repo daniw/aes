@@ -54,10 +54,144 @@ $10^\circ$ nicht.
 \end{figure}
 
 \section{Modulwahl}
+Aufgrund des guten Preis/Leistungs Verhältnis wird das Panel C verwendet. Es 
+ist das günstigste Panel in der gegebenen Auswahl und bietet einen 
+vergleichsweise guten Wirkungsgrad. Panel D weist einen leicht höheren 
+Wirkungsgrad auf, ist aber verglichen mit den anderen Modulen 
+unverhältnismässig teuer. 
 
 \section{Aufständerung}
+Zur Ermittlung der Aufständerung wird eine Matlab Funktion geschrieben. Dieses 
+ist in Anhang \ref{app_panelize} ersichtlich. Die Funktion muss mit den 
+Parametern Dachabmessungen, Panelgrösse, Aufstellwinkel, Freiwinkel und 
+minimaler Abstand zwischen den Panels aufgerufen werden. Die Funktion 
+ermittelt dann die optimale Aufstellung der Panels auf dem Dach. 
 
+\noindent
+Diese Funktion wird nun mit einem Matlab Skript (Anhang \ref{app_panels}) mit 
+verschiedenen Aufstellwinkeln aufgerufen. Zudem wird die vertikale und die 
+horizontale Montage der Panels berücksichtigt. Aus diesen Daten werden 
+anschliessend Leistungsabgabe und Panelkosten berechnet. Diese können mit 
+Gewichtungsfaktoren (Zeilen 95 und 96) unterschiedlich gewichtet werden. Mit 
+diesen wird nun die optimale Aufstellung der Panels ermittelt. Anschliessend 
+wird der Ertrag und die Kosten der Anlage berechnet. Dazu müssen die Inverter 
+und Anschlusskästen von Hand parametrisiert werden. (Zeilen 185, 189, 193 und 
+197 $\to$ Wechselrichter und Zeilen 210, 212 und 214 $\to$ Anschlusskästen)
 
+\section{Ausgaben}
+\subsection{Plots}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{nof_panels.pdf}
+    \label{fig:nof_panels}
+    \caption{Anzahl Panels abhängig vom Aufstellwinkel}
+\end{figure}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{leftover.pdf}
+    \label{fig:leftover}
+    \caption{Unnötig ungenutzte Länge abhängig vom Aufstellwinkel}
+\end{figure}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{total_radiation.pdf}
+    \label{fig:total_radiation}
+    \caption{Bestrahlung abhängig vom Aufstellwinkel}
+\end{figure}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{power_cost.pdf}
+    \label{fig:power_cost}
+    \caption{Leistung pro Franken abhängig vom Aufstellwinkel}
+\end{figure}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{weight_result.pdf}
+    \label{fig:weight_result}
+    \caption{Ergebnis nach Gewichtung mit Gewichtungsfaktoren 1 für Leistung 
+        und 7 für Kosten abhängig vom Aufstellwinkel}
+\end{figure}
+
+\clearpage
+\subsection{Terminalausgabe}
+\lstinputlisting{example_output.txt}
+
+\section{Anschluss}
+Es werden jeweils 20 Panels in Serie zusammengefasst. Diese Stränge werden 
+direkt an Wechselrichter vom Typ C angeschlossen. Die Wechselrichter werden 
+mit einem Anschlusskasten vom Typ 3 ans Netz angeschlossen. 
+
+\section{Ergebnisse}
+\begin{zebratabular}{
+    p{0.10\textwidth}
+        p{0.10\textwidth}
+        p{0.07\textwidth}
+        p{0.07\textwidth}
+        p{0.08\textwidth}
+        p{0.11\textwidth}
+        p{0.11\textwidth}}
+    \rowcolor{gray}
+    Gewichtung Leistung &
+        Gewichtung Kosten &
+        Anzahl Panels &
+        Anzahl WR\_C &
+        Jährliche Energie kWh &
+        Kosten [CHF/kWh] &
+        Ertrag [kWh/CHF] \\
+    1 &
+        9 &
+        240 &
+        4 &
+        57.2 &
+        0.213 &
+        4.69 \\
+    1 &
+        8 &
+        260 &
+        5 &
+        58.7 &
+        0.233 &
+        4.30 \\
+    1 &
+        5 &
+        280 &
+        5 &
+        60.5 &
+        0.236 &
+        4.23\\
+    1 &
+        3.5 &
+        300 &
+        5 &
+        62.3 &
+        0.240 &
+        4.17 \\
+    1 &
+        3.2 &
+        320 &
+        6 &
+        64.2 &
+        0.256 &
+        3.91 \\
+    1 &
+        3 &
+        340 &
+        6 &
+        66.2 &
+        0.258 &
+        3.88 \\
+    1 &
+        2.5 &
+        380 &
+        7 &
+        69.1 &
+        0.278 &
+        3.60 \\
+\end{zebratabular}
+
+\section{Ablage}
+Die im Rahmen dieser Arbeit erstellten Skripte sind auf Github verfügbar: \\
+\url{https://github.com/daniw/aes/tree/master/sw06}
 
 \clearpage
 \begin{appendix}

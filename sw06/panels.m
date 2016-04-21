@@ -60,15 +60,17 @@ ylabel('Number of panels [1]');
 legend('landscape orientation', 'portrait orientation');
 grid on;
 grid minor;
+print -dpdf nof_panels
 
-%figure(2);
-%plot(beta_array(1,:), leftover_y(1,:), beta_array(1,:), leftover_y(2,:), 'LineWidth', 2);
-%title('Not used space as function of panel angle');
-%xlabel('Panel angle [\circ]');
-%ylabel('Not used space [m]');
-%legend('landscape orientation', 'portrait orientation');
-%grid on;
-%grid minor;
+figure(2);
+plot(beta_array(1,:), leftover_y(1,:), beta_array(1,:), leftover_y(2,:), 'LineWidth', 2);
+title('Not used space as function of panel angle');
+xlabel('Panel angle [\circ]');
+ylabel('Not used space [m]');
+legend('landscape orientation', 'portrait orientation');
+grid on;
+grid minor;
+print -dpdf leftover
 
 figure(3);
 plot(beta_array(1,:), radiation_total(1,:), beta_array(1,:), radiation_total(2,:), 'LineWidth', 2);
@@ -78,6 +80,7 @@ ylabel('radiation on all panels [W]');
 legend('landscape orientation', 'portrait orientation');
 grid on;
 grid minor;
+print -dpdf total_radiation
 
 figure(4);
 plot(beta_array(1,:), power_price(1,:), beta_array(1,:), power_price(2,:), 'LineWidth', 2);
@@ -87,6 +90,7 @@ ylabel('Power per price per Watt [W / CHF]');
 legend('landscape orientation', 'portrait orientation');
 grid on;
 grid minor;
+print -dpdf power_cost
 
 weight_radiation = 1;
 weight_price = 7;
@@ -130,6 +134,7 @@ weight_price = 7;
     grid on;
     grid minor;
     %hold on;
+    print -dpdf weight_result
 
     %pause(0.1);
     %j = j + 1;
