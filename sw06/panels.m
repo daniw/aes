@@ -20,6 +20,8 @@ spacing_min = 0.5;
 alpha = 19 * pi / 180;
 % price per panel
 price_panel = 224;
+% nominal power per panel
+power_nom_panel = 260;
 % Radiation 
 radiation = [1000 1050 1100 1100 1050 1000 950 900 850 800 750];
 % Angles for radiation above
@@ -91,8 +93,8 @@ weight_price = 7;
 %j = 1;
 %for weight_price = [0.0:0.001:1.0];    % Prepared loop for weighting factor iterations
     %weight_radiation = 1 - weight_price;
-    disp(['Output power weighting: ' num2str(weight_radiation)]);
-    disp(['Panel price weighting:  ' num2str(weight_price)]);
+    disp(['Output power weighting:                    ' num2str(weight_radiation)]);
+    disp(['Panel price weighting:                     ' num2str(weight_price)]);
 
     beta_eval = beta_array;
 
@@ -142,3 +144,90 @@ disp(['Number of panels in north-south direction: ' num2str(nof_y_opt)]);
 nof_tot_opt = nof_x_opt * nof_y_opt;
 disp(['Total number of panels:                    ' num2str(nof_tot_opt)]);
 
+% Energy Output
+eta_inv = 0.975;
+g0 = 1000;
+g = [37 65 112 152 185 198 208 182 129 77 42 29];
+beta_r = [00 10 20 30 45 60];
+r = [1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00; ...
+     1.20 1.17 1.11 1.06 1.03 1.02 1.03 1.06 1.10 1.13 1.18 1.20; ...
+     1.24 1.20 1.13 1.06 1.03 1.00 1.02 1.06 1.11 1.16 1.18 1.24; ...
+     1.34 1.28 1.16 1.06 1.01 0.98 1.00 1.05 1.13 1.21 1.26 1.34; ...
+     1.42 1.33 1.17 1.03 0.94 0.91 0.93 1.00 1.13 1.24 1.31 1.45; ...
+     1.47 1.33 1.12 0.95 0.84 0.80 0.82 0.91 1.06 1.21 1.31 1.48];
+r_act =  interp1(beta_r, r, beta_opt * beta_increment, 'linear');
+ndi = [31 28 31 30 31 30 31 31 30 31 30 31];
+beta_kg = [00 10 20 30 45 60 90];
+kg = [0.30 0.30 0.60 0.60 0.60 0.70 0.70 0.70 0.60 0.60 0.60 0.30; ...
+      0.40 0.40 0.65 0.65 0.65 0.75 0.75 0.75 0.65 0.65 0.65 0.40; ...
+      0.50 0.60 0.75 0.75 0.75 0.80 0.80 0.80 0.75 0.75 0.75 0.50; ...
+      0.69 0.73 0.81 0.83 0.84 0.84 0.84 0.84 0.84 0.82 0.75 0.66; ...
+      0.80 0.83 0.84 0.85 0.86 0.86 0.86 0.86 0.86 0.84 0.82 0.77; ...
+      0.84 0.85 0.86 0.86 0.85 0.85 0.85 0.85 0.86 0.86 0.85 0.84; ...
+      0.86 0.86 0.85 0.84 0.82 0.81 0.81 0.82 0.84 0.85 0.86 0.86];
+kg_act =  interp1(beta_kg, kg, beta_opt * beta_increment, 'linear');
+kt = [1.05 1.03 1.01 0.98 0.95 0.93 0.91 0.92 0.95 0.99 1.04 1.05];
+gg = g .* r_act;
+gi = gg;
+hi = 24 * gi;
+hgi = r_act .* hi;
+yfi = eta_inv  .* kg_act .* kt .* (hgi ./ g0);
+Ei = (nof_tot_opt * power_nom_panel) .* ndi .* yfi;
+Ea = sum(Ei);
+
+% Price calculation
+% number of inverter A (input manual)
+nof_inv_a = 0;
+% price of inverter A (input manual)
+price_inv_a = 28910;
+% number of inverter B (input manual)
+nof_inv_b = 0;
+% price of inverter B (input manual)
+price_inv_b = 11392;
+% number of inverter C (input manual)
+nof_inv_c = 0;
+% price of inverter C (input manual)
+price_inv_c = 3366;
+% number of inverter D (input manual)
+nof_inv_d = 5;
+% price of inverter D (input manual)
+price_inv_d = 4248;
+
+price_inv = nof_inv_a * price_inv_a + ...
+            nof_inv_b * price_inv_b + ...
+            nof_inv_c * price_inv_c + ...
+            nof_inv_d * price_inv_d;
+
+% photovoltaik
+price_pv = nof_tot_opt * price_panel;
+
+% Connection boxes
+nof_ak_a = 0;
+price_ak_a = 2530;
+nof_ak_b = 0;
+price_ak_b = 2165;
+nof_ak_c = 1;
+price_ak_c = 1000;
+
+price_ak = nof_ak_a * price_ak_a + ...
+           nof_ak_b * price_ak_b + ...
+           nof_ak_c * price_ak_c;
+
+price = price_pv + price_inv + price_ak;
+
+z = 0.05;
+n_inv = 10;
+n_rest = 25;
+a_inv = z / (1 - (1 + z)^(-n_inv));
+a_rest = z / (1 - (1 + z)^(-n_rest));
+
+k_a_inv = price_inv * a_inv;
+k_a_rest = (2 * price_pv + 2 * price_ak + price_inv) * a_rest;
+k_a_total = k_a_inv + k_a_rest;
+price_maintenance = 1000;
+
+disp(['Annual energy production:                  ' num2str(Ea / 1e6) ' MWh']);
+disp(['Initial costs:                             ' num2str(price) ' CHF']);
+disp(['Annual costs:                              ' num2str(k_a_total) ' CHF']);
+disp(['Actual costs:                              ' num2str((k_a_total + price_maintenance) / (Ea / 1e3)) ' CHF / kWh']);
+disp(['Power by price:                            ' num2str((Ea / 1e3) / (k_a_total + price_maintenance)) ' kWh / CHF']);
