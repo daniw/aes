@@ -19,10 +19,13 @@ function [nof_panels, nof_x, nof_y, leftover_x, leftover_y] = panelize(roof_x, r
     panel_y_corr = panel_y .* cos(beta);
     panel_h = panel_y .* sin(beta);
     spacing_angle = panel_h ./ tan(alpha);
-    if (spacing_angle > spacing_min)
-        spacing = spacing_angle;
-    else
-        spacing = spacing_min;
+    spacing = zeros(length(spacing_angle), 1);
+    for i = 1:length(spacing_angle)
+        if (spacing_angle(i) > spacing_min)
+            spacing(i) = spacing_angle(i);
+        else
+            spacing(i) = spacing_min;
+        end
     end
     nof_y = floor((roof_y - panel_y) ./ (panel_y_corr + spacing)) + 1;
     leftover_y = roof_y - ((nof_y - 1) .* (panel_y_corr + spacing) + panel_y_corr);
